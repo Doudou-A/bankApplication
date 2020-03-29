@@ -4,7 +4,6 @@ Simple bankApplication where you can create a bank count, buy or sell object and
 
 # New tools I have to use : 
 -PHPstan
-
 -phpinsights
 -Xdebug
 
