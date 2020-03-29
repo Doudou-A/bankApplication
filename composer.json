@@ -20,7 +20,8 @@
     "require-dev": {
         "nunomaduro/phpinsights": "^1.14",
         "phpstan/phpstan": "^0.12.18",
-        "symfony/maker-bundle": "^1.14"
+        "symfony/maker-bundle": "^1.14",
+        "symfony/profiler-pack": "^1.0"
     },
     "config": {
         "preferred-install": {

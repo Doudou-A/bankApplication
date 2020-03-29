@@ -14,14 +14,16 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
         main:
-            anonymous: lazy
-            provider: app_user_provider
+            anonymous: ~
+            pattern: ^/
             form_login:
-                login_path: app_login 
+                login_path: app_login
                 check_path: app_login
-            logout:
-                path: app_logout
+                always_use_default_target_path:  true
+                default_target_path:  /
+            logout: ~
                 # where to redirect after logout
                 # target: app_any_route
 

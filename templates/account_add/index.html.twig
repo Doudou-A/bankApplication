@@ -1,20 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccountAddController!{% endblock %}
+{% block title %}Hello AccountAddController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	{{ form_start(form, {'action' : path('account_add')}) }}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+	{{ form_row(form.number)}}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/Adel/Documents/opensource/bankApplication/src/Controller/AccountAddController.php'|file_link(0) }}">src/Controller/AccountAddController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/Adel/Documents/opensource/bankApplication/templates/account_add/index.html.twig'|file_link(0) }}">templates/account_add/index.html.twig</a></code></li>
-    </ul>
-</div>
+	<button type="submit" value="Ajouter" class="btn btn-success pull-right">Ajouter</button>
+	{{ form_end(form) }}
 {% endblock %}

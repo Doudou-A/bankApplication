@@ -8,10 +8,9 @@ class CreateAccount
 {
     /**
      * @Assert\NotBlank()
-     * @Assert\Length(min="11", max="13")
+     * @Assert\Length(min="6", max="7")
      * @Assert\Positive()
      * @var integer
      */
     public $number;
-
 }
