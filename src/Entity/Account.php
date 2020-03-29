@@ -19,12 +19,12 @@ class Account
     /**
      * @ORM\Column(type="integer")
      */
-    private $Number;
+    private $number;
 
     /**
      * @ORM\Column(type="float")
      */
-    private $Money;
+    private $money;
 
     public function getId(): ?int
     {
@@ -33,24 +33,24 @@ class Account
 
     public function getNumber(): ?int
     {
-        return $this->Number;
+        return $this->number;
     }
 
-    public function setNumber(int $Number): self
+    public function setNumber(int $number): self
     {
-        $this->Number = $Number;
+        $this->number = $number;
 
         return $this;
     }
 
     public function getMoney(): ?float
     {
-        return $this->Money;
+        return $this->money;
     }
 
-    public function setMoney(float $Money): self
+    public function setMoney(float $money): self
     {
-        $this->Money = $Money;
+        $this->money = $money;
 
         return $this;
     }
