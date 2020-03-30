@@ -12,7 +12,6 @@ class DashboardController extends AbstractController
      */
     public function index()
     {
-        phpinfo();
         return $this->render('dashboard/index.html.twig', [
             'controller_name' => 'DashboardController',
         ]);
