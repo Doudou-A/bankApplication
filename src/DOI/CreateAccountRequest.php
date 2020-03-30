@@ -4,7 +4,7 @@ namespace App\DOI;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class CreateAccount
+class CreateAccountRequest
 {
     /**
      * @Assert\NotBlank()

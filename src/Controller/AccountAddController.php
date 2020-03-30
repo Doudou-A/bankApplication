@@ -2,10 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Account;
-use App\DOI\CreateAccount;
+use App\DOI\CreateAccountRequest;
 use App\Form\AccountFormType;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Service\AccountManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,20 +14,18 @@ class AccountAddController extends AbstractController
     /**
      * @Route("/account/add", name="account_add")
      */
-    public function index(Request $request, EntityManagerInterface $manager)
+    public function index(Request $request, AccountManager $accountManager)
     {
-        $createAccount = new CreateAccount;
+        $createAccountRequest = new CreateAccountRequest;
 
-        $form = $this->createForm(AccountFormType::class, $createAccount);
+        $form = $this->createForm(AccountFormType::class, $createAccountRequest);
         $form->handleRequest($request);
 
         if($form ->isSubmitted() && $form->isValid())
         {
-            $account = new Account;
-            $account->setNumber($createAccount->number);
-            $account->setMoney(0);
-            $manager->persist($account);
-            $manager->flush();
+            $accountManager->createAccount($createAccountRequest);
+
+            $this->addFlash('success', 'Your account has been created !');
 
             return $this->redirectToRoute('dashboard');
         }
