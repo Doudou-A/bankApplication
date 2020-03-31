@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TransactionBuyController!
+{% endblock %}
+
+{% block body %}
+	{{ form_start(form, {'action' : path('account_add')}) }}
+
+	{{ form_row(form.name)}}
+	{{ form_row(form.price)}}
+	{{ form_row(form.status)}}
+
+	<button type="submit" value="Ajouter" class="btn btn-success pull-right">Ajouter</button>
+	{{ form_end(form) }}
+{% endblock %}

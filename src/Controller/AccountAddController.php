@@ -31,7 +31,7 @@ class AccountAddController extends AbstractController
             return $this->redirectToRoute('dashboard');
         }
 
-        return $this->render('account_add/index.html.twig', [
+        return $this->render('account/account_add.html.twig', [
             'form' => $form->createView()
         ]);
     }

@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200330180624 extends AbstractMigration
+final class Version20200331112222 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,9 +22,9 @@ final class Version20200330180624 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE account ADD user_id INT NOT NULL');
-        $this->addSql('ALTER TABLE account ADD CONSTRAINT FK_7D3656A4A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
-        $this->addSql('CREATE INDEX IDX_7D3656A4A76ED395 ON account (user_id)');
+        $this->addSql('ALTER TABLE transaction ADD account_id INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE transaction ADD CONSTRAINT FK_723705D19B6B5FBA FOREIGN KEY (account_id) REFERENCES account (id)');
+        $this->addSql('CREATE INDEX IDX_723705D19B6B5FBA ON transaction (account_id)');
     }
 
     public function down(Schema $schema) : void
@@ -32,8 +32,8 @@ final class Version20200330180624 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE account DROP FOREIGN KEY FK_7D3656A4A76ED395');
-        $this->addSql('DROP INDEX IDX_7D3656A4A76ED395 ON account');
-        $this->addSql('ALTER TABLE account DROP user_id');
+        $this->addSql('ALTER TABLE transaction DROP FOREIGN KEY FK_723705D19B6B5FBA');
+        $this->addSql('DROP INDEX IDX_723705D19B6B5FBA ON transaction');
+        $this->addSql('ALTER TABLE transaction DROP account_id');
     }
 }
