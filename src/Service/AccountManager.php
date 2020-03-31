@@ -14,11 +14,12 @@ class AccountManager
         $this->manager = $manager;
     }
 
-    public function createAccount($createAccountRequest)
+    public function createAccount($createAccountRequest, $user)
     {
         $account = new Account;
         $account->setNumber($createAccountRequest->number);
         $account->setMoney(0);
+        $account->setUser($user);
 
         $this->persist($account);
     }

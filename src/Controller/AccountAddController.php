@@ -16,6 +16,7 @@ class AccountAddController extends AbstractController
      */
     public function index(Request $request, AccountManager $accountManager)
     {
+        $user = $this->getUser();
         $createAccountRequest = new CreateAccountRequest;
 
         $form = $this->createForm(AccountFormType::class, $createAccountRequest);
@@ -23,7 +24,7 @@ class AccountAddController extends AbstractController
 
         if($form ->isSubmitted() && $form->isValid())
         {
-            $accountManager->createAccount($createAccountRequest);
+            $accountManager->createAccount($createAccountRequest, $user);
 
             $this->addFlash('success', 'Your account has been created !');
 
