@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TransactionBuyController!
+{% block title %}Transaction!
 {% endblock %}
 
 {% block body %}
-	{{ form_start(form, {'action' : path('account_add')}) }}
+	{{ form_start(form) }}
 
 	{{ form_row(form.name)}}
 	{{ form_row(form.price)}}

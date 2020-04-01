@@ -5,8 +5,10 @@ namespace App\Controller;
 use App\Entity\Account;
 use App\Entity\Transaction;
 use App\DOI\TransactionRequest;
+use App\Service\AccountManager;
 use App\Form\TransactionFormType;
 use App\Repository\AccountRepository;
+use App\Service\TransactionManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,12 +17,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class TransactionController extends AbstractController
 {
     /**
-     * @Route("/transaction/{number}", name="transaction")
+     * @Route("/transaction/{id}", name="transaction")
      */
-    public function index($number, AccountRepository $repo, Request $request, EntityManagerInterface $manager)
+    public function index($id, Request $request, AccountManager $accountManager, TransactionManager $transactionManager)
     {
-
-        $account = $repo->findByNumber($number);
+        $account = $accountManager->getAccount($id);
 
         $transactionRequest = new TransactionRequest;
 
@@ -29,20 +30,22 @@ class TransactionController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
-            $transaction = new Transaction;
-            $transaction->setName($transactionRequest->name);
-            $transaction->setStatus($transactionRequest->status);
-            $transaction->setPrice($transactionRequest->price);
-            if($transactionRequest->status === 0)
-            {
-                $moneyBefore = $account->getMoney();
-                $money = $moneyBefore + $transactionRequest->price;
-                $account->setMoney($money);
-            }
+            $transaction = $transactionManager->newTransaction($transactionRequest, $id);
 
-            $manager->persist($transaction);
-            $manager->persist($account);
-            $manager->flush();
+            if($transactionRequest->status === 1)
+            {
+                $money = $transactionManager->buy($transaction, $transactionRequest);
+            } else {
+                $money = $transactionManager->sell($transaction, $transactionRequest);
+            }
+            $accountManager->updateAccount($account, $money);
+
+            $transactionManager->persist($transaction);
+            $accountManager->persist($account);
+
+            $this->addFlash('success', 'Your transaction has been add to your account !');
+
+            return $this->redirectToRoute('dashboard');
         }
 
         return $this->render('transaction/transaction.html.twig', [

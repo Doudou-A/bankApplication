@@ -36,6 +36,11 @@ class Transaction
      */
     private $account;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateCreated;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,6 +90,18 @@ class Transaction
     public function setAccount(?Account $account): self
     {
         $this->account = $account;
+
+        return $this;
+    }
+
+    public function getDateCreated(): ?\DateTimeInterface
+    {
+        return $this->dateCreated;
+    }
+
+    public function setDateCreated(\DateTimeInterface $dateCreated): self
+    {
+        $this->dateCreated = $dateCreated;
 
         return $this;
     }

@@ -13,6 +13,9 @@
 					<div class="text-danger">{{account.money}}€</div>
 				{% else %}
 					<div class="text-success">{{account.money}}€</div>
+					{% for transaction in account.transactions|slice(0, 1) %}
+					{{transaction.name}}{{transaction.price}}
+					{% endfor %}
 				{% endif %}
 			</div>
 		{% endfor %}
