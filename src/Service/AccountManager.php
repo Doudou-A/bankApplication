@@ -33,6 +33,11 @@ class AccountManager
         return $account;
     }
 
+    public function getAccountList()
+    {
+        
+    }
+
     public function updateAccount($account, $money)
     {
         $account->setMoney($money);

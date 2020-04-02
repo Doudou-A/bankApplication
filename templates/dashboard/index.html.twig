@@ -8,15 +8,25 @@
 	<div class="w-100 m-3 d-flex justify-content-around">
 		{% for account in  accounts %}
 			<div class="w-25 border">
-				CCP : {{account.number}}
+				CCP :
+				{{account.number}}
 				{% if account.money < 0 %}
-					<div class="text-danger">{{account.money}}€</div>
+					<div class="text-danger h3">{{account.money}}€</div>
 				{% else %}
-					<div class="text-success">{{account.money}}€</div>
+					<div class="text-success h3">{{account.money}}€</div>
 					{% for transaction in account.transactions|slice(0, 1) %}
-					{{transaction.name}}{{transaction.price}}
+						<div class="p-3 d-flex justify-content-between">
+							{% if transaction.status == 0 %}
+								<div class="m-3">{{transaction.name}}</div>
+								<div class="text-success m-3">+{{transaction.price}}€</div>
+							{% else %}
+								<div class="m-3">{{transaction.name}}</div>
+								<div class="text-danger m-3">-{{transaction.price}}€</div>
+							{% endif %}
+						</div>
 					{% endfor %}
 				{% endif %}
+				<a href="{{ path('account_display', {'id': account.id}) }}" class="text-center text-bottom">Voir Plus</a>
 			</div>
 		{% endfor %}
 	</div>
