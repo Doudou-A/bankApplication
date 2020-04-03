@@ -2,6 +2,8 @@
 
 namespace App\DOI;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 class TransfertRequest
 {
     /**
