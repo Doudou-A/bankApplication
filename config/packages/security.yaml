@@ -1,7 +1,7 @@
 security:
     access_decision_manager:
         strategy: affirmative
-        allow_if_all_abstain: true
+        allow_if_all_abstain: false
 
     encoders:
         App\Entity\User:
@@ -14,9 +14,6 @@ security:
             entity:
                 class: App\Entity\User
                 property: username
-                
-    role_hierarchy:
-        ROLE_USER:   ROLE_USER
 
     firewalls:
         dev:
@@ -24,14 +21,16 @@ security:
             security: false
 
         main:
-            anonymous: ~
+            anonymous: lazy
             pattern: ^/
             form_login:
                 login_path: app_login
                 check_path: app_login
                 always_use_default_target_path:  true
                 default_target_path:  /
-            logout: ~
+            logout: 
+                path:   app_logout    
+                target: dashboard
                 # where to redirect after logout
                 # target: app_any_route
 
@@ -45,6 +44,6 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
          - { path: ^/account, roles: ROLE_USER }
-         - { path: ^/dashboard, roles: ROLE_USER }
-         - { path: ^/transfert, roles: ROLE_USER }
-         - { path: ^/transaction, roles: ROLE_USER }
+        # - { path: ^/dashboard, roles: ROLE_USER }
+        # - { path: ^/transfert, roles: ROLE_USER }
+        # - { path: ^/transaction, roles: ROLE_USER }
