@@ -35,7 +35,7 @@ class AccountManager
 
     public function getAccountByNumber($number)
     {
-        $account = $this->repository->find($number);
+        $account = $this->repository->findByNumber($number);
         return $account;
     }
 

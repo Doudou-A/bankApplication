@@ -34,7 +34,7 @@ class AppFixtures extends Fixture
 
         for($i = 0; $i < 3; $i++){
             $user = new User();
-            $user ->setUsername($faker->userName)
+            $user ->setUsername($faker->firstName)
                   ->setPassword($this->encoder->encodePassword($user, 'password'));
             
                   $manager->persist($user);
@@ -44,7 +44,7 @@ class AppFixtures extends Fixture
 
         for($j = 0; $j < 6; $j++){
             $account = new Account();
-            $account ->setNumber(random_int (7,7))
+            $account ->setNumber(random_int (1000000,9999999))
                      ->setMoney(0)
                      ->setUser($faker->randomElement($users));
             
@@ -58,7 +58,7 @@ class AppFixtures extends Fixture
 
             $account = $faker->randomElement($accounts);
             $transaction ->setName($faker->domainWord)
-                    ->setPrice($faker->randomElement($users))
+                    ->setPrice(random_int(0,999.99))
                     ->setStatus($faker->randomElement($status))
                     ->setAccount($faker->randomElement($accounts))
                     ->setDateCreated($faker->dateTime);
@@ -66,7 +66,16 @@ class AppFixtures extends Fixture
                   $manager->persist($transaction);
                   $transactions[] = $transaction;
 
-                  $account ->setTransaction($transaction);
+                  $account ->addTransaction($transaction);
+                  $money = $account->getMoney();
+                  $price = $transaction->getPrice();
+                  if($transaction->getStatus() == 0)
+                  {
+                    $money = $money + $price;
+                  } else {
+                    $money = $money - $price;
+                  }
+                  $account->setMoney($money);
                   $manager->persist($account);
         }
         $manager->flush();

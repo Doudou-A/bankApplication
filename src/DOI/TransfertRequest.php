@@ -12,4 +12,16 @@ class TransfertRequest
      * @var float
      */
     public $amount;
+
+     /**
+     * @Assert\Positive()
+     * @var integer
+     */
+    public $account_to_debit;
+
+     /**
+     * @Assert\Positive()
+     * @var integer
+     */
+    public $account_to_credit;
 }

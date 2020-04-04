@@ -27,7 +27,7 @@ security:
                 login_path: app_login
                 check_path: app_login
                 always_use_default_target_path:  true
-                default_target_path:  /
+                default_target_path:  dashboard
             logout: 
                 path:   app_logout    
                 target: dashboard
@@ -44,6 +44,6 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
          - { path: ^/account, roles: ROLE_USER }
-        # - { path: ^/dashboard, roles: ROLE_USER }
-        # - { path: ^/transfert, roles: ROLE_USER }
-        # - { path: ^/transaction, roles: ROLE_USER }
+         - { path: ^/dashboard, roles: ROLE_USER }
+         - { path: ^/transfert, roles: ROLE_USER }
+         - { path: ^/transaction, roles: ROLE_USER }
