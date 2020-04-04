@@ -33,9 +33,10 @@ class AccountManager
         return $account;
     }
 
-    public function getAccountList()
+    public function getAccountByNumber($number)
     {
-        
+        $account = $this->repository->find($number);
+        return $account;
     }
 
     public function updateAccount($account, $money)

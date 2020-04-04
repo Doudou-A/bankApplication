@@ -1,4 +1,8 @@
 security:
+    access_decision_manager:
+        strategy: affirmative
+        allow_if_all_abstain: true
+
     encoders:
         App\Entity\User:
             algorithm: auto
@@ -10,6 +14,10 @@ security:
             entity:
                 class: App\Entity\User
                 property: username
+                
+    role_hierarchy:
+        ROLE_USER:   ROLE_USER
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -36,5 +44,7 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/account, roles: ROLE_USER }
-        # - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/account, roles: ROLE_USER }
+         - { path: ^/dashboard, roles: ROLE_USER }
+         - { path: ^/transfert, roles: ROLE_USER }
+         - { path: ^/transaction, roles: ROLE_USER }

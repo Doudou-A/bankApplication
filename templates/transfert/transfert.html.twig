@@ -6,7 +6,8 @@
 {% block body %}
 	{{ form_start(form) }}
 
-	{{ form_row(form.transmitter)}}
+	{{ form_row(form.account_to_debit)}}
+	{{ form_row(form.account_to_credit)}}
 	{{ form_row(form.amount)}}
 
 	<button type="submit" value="Ajouter" class="btn btn-success pull-right">Ajouter</button>

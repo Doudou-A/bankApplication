@@ -2,15 +2,9 @@
 
 namespace App\Form;
 
-use App\Entity\Account;
-use App\Service\UserManager;
-use Doctrine\DBAL\Types\TextType;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 
 class TransfertFormType extends \Symfony\Component\Form\AbstractType
@@ -31,7 +25,11 @@ class TransfertFormType extends \Symfony\Component\Form\AbstractType
             'expanded' => true,
             'choice_label' => 'name'
             ]) */
-            ->add('transmitter', ChoiceType::class, [
+            ->add('account_to_debit', ChoiceType::class, [
+                'mapped' => false,
+                'choices' => $this->traitChoices
+            ])
+            ->add('account_to_credit', ChoiceType::class, [
                 'mapped' => false,
                 'choices' => $this->traitChoices
             ])

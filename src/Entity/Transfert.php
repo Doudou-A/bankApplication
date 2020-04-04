@@ -26,6 +26,16 @@ class Transfert
      */
     private $dateCreated;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $accountToDebit;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $accountToCredit;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,6 +61,30 @@ class Transfert
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
         $this->dateCreated = $dateCreated;
+
+        return $this;
+    }
+
+    public function getAccountToDebit(): ?int
+    {
+        return $this->accountToDebit;
+    }
+
+    public function setAccountToDebit(int $accountToDebit): self
+    {
+        $this->accountToDebit = $accountToDebit;
+
+        return $this;
+    }
+
+    public function getAccountToCredit(): ?int
+    {
+        return $this->accountToCredit;
+    }
+
+    public function setAccountToCredit(int $accountToCredit): self
+    {
+        $this->accountToCredit = $accountToCredit;
 
         return $this;
     }
