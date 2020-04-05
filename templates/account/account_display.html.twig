@@ -24,15 +24,15 @@
 			{% endif %}
 		</div>
 		<div class="border-right border-left border-bottom overflow-auto">
-			{% for transaction in transactions %}
+			{% for aExchange in aExchanges %}
 				<div class="p-3 d-flex justify-content-between">
-					{% if transaction.status == 0 %}
-						<div class="m-3">{{transaction.name}}</div>
-						<div class="text-success m-3">+{{transaction.price}}
+					{% if aExchange.status == 0 %}
+						<div class="m-3">{{aExchange.name}}</div>
+						<div class="text-success m-3">+{{aExchange.price}}
 							€</div>
 					{% else %}
-						<div class="m-3">{{transaction.name}}</div>
-						<div class="text-danger m-3">-{{transaction.price}}
+						<div class="m-3">{{aExchange.name}}</div>
+						<div class="text-danger m-3">-{{aExchange.price}}
 							€</div>
 					{% endif %}
 				</div>

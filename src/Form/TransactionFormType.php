@@ -14,7 +14,11 @@ class TransactionFormType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('price')
+            ->add('price', null, [
+                'attr' => [
+                    'placeholder' => '€',
+                ]
+            ])
             ->add('status', ChoiceType::class, [
                 'choices'  => [
                     'SELL' => 0,

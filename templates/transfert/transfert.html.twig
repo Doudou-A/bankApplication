@@ -6,8 +6,11 @@
 {% block body %}
 	{{ form_start(form) }}
 
-	{{ form_row(form.account_to_debit)}}
-	{{ form_row(form.account_to_credit)}}
+	{{ form_row(form.accountToDebit)}}
+	{{ form_row(form.accountToCredit)}}
+	{% if sameAccountError %}
+		<div class="text-danger">You can't transfert money between the same account</div>
+	{% endif %}
 	{{ form_row(form.amount)}}
 
 	<button type="submit" value="Ajouter" class="btn btn-success pull-right">Ajouter</button>

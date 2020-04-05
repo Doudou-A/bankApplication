@@ -25,15 +25,17 @@ class TransfertFormType extends \Symfony\Component\Form\AbstractType
             'expanded' => true,
             'choice_label' => 'name'
             ]) */
-            ->add('account_to_debit', ChoiceType::class, [
-                'mapped' => false,
+            ->add('accountToDebit', ChoiceType::class, [
                 'choices' => $this->traitChoices
             ])
-            ->add('account_to_credit', ChoiceType::class, [
-                'mapped' => false,
+            ->add('accountToCredit', ChoiceType::class, [
                 'choices' => $this->traitChoices
             ])
-            ->add('amount');
+            ->add('amount', null, [
+                'attr' => [
+                    'placeholder' => '€',
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

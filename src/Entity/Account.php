@@ -39,9 +39,21 @@ class Account
      */
     private $transactions;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Transfert", mappedBy="accountToDebit")
+     */
+    private $transfertsDebit;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Transfert", mappedBy="accountToCredit")
+     */
+    private $transfertsCredit;
+
     public function __construct()
     {
         $this->transactions = new ArrayCollection();
+        $this->transfertsDebit = new ArrayCollection();
+        $this->transfertsCredit = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -110,6 +122,68 @@ class Account
             // set the owning side to null (unless already changed)
             if ($transaction->getAccount() === $this) {
                 $transaction->setAccount(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Transfert[]
+     */
+    public function getTransfertsDebit(): Collection
+    {
+        return $this->transfertsDebit;
+    }
+
+    public function addTransfertsDebit(Transfert $transfertsDebit): self
+    {
+        if (!$this->transfertsDebit->contains($transfertsDebit)) {
+            $this->transfertsDebit[] = $transfertsDebit;
+            $transfertsDebit->setAccountToDebit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTransfertsDebit(Transfert $transfertsDebit): self
+    {
+        if ($this->transfertsDebit->contains($transfertsDebit)) {
+            $this->transfertsDebit->removeElement($transfertsDebit);
+            // set the owning side to null (unless already changed)
+            if ($transfertsDebit->getAccountToDebit() === $this) {
+                $transfertsDebit->setAccountToDebit(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Transfert[]
+     */
+    public function getTransfertsCredit(): Collection
+    {
+        return $this->transfertsCredit;
+    }
+
+    public function addTransfertsCredit(Transfert $transfertsCredit): self
+    {
+        if (!$this->transfertsCredit->contains($transfertsCredit)) {
+            $this->transfertsCredit[] = $transfertsCredit;
+            $transfertsCredit->setAccountToCredit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTransfertsCredit(Transfert $transfertsCredit): self
+    {
+        if ($this->transfertsCredit->contains($transfertsCredit)) {
+            $this->transfertsCredit->removeElement($transfertsCredit);
+            // set the owning side to null (unless already changed)
+            if ($transfertsCredit->getAccountToCredit() === $this) {
+                $transfertsCredit->setAccountToCredit(null);
             }
         }
 

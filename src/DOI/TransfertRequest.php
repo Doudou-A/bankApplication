@@ -14,14 +14,12 @@ class TransfertRequest
     public $amount;
 
      /**
-     * @Assert\Positive()
      * @var integer
      */
-    public $account_to_debit;
+    public $accountToDebit;
 
      /**
-     * @Assert\Positive()
      * @var integer
      */
-    public $account_to_credit;
+    public $accountToCredit;
 }

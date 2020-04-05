@@ -27,12 +27,12 @@ class Transfert
     private $dateCreated;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Account", inversedBy="transfertsDebit")
      */
     private $accountToDebit;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Account", inversedBy="transfertsCredit")
      */
     private $accountToCredit;
 
@@ -65,27 +65,28 @@ class Transfert
         return $this;
     }
 
-    public function getAccountToDebit(): ?int
+    public function getAccountToDebit(): ?Account
     {
         return $this->accountToDebit;
     }
 
-    public function setAccountToDebit(int $accountToDebit): self
+    public function setAccountToDebit(?Account $accountToDebit): self
     {
         $this->accountToDebit = $accountToDebit;
 
         return $this;
     }
 
-    public function getAccountToCredit(): ?int
+    public function getAccountToCredit(): ?Account
     {
         return $this->accountToCredit;
     }
 
-    public function setAccountToCredit(int $accountToCredit): self
+    public function setAccountToCredit(?Account $accountToCredit): self
     {
         $this->accountToCredit = $accountToCredit;
 
         return $this;
     }
+
 }

@@ -17,6 +17,30 @@ class AccountManager
         $this->repository = $repository;
     }
 
+    public function accountCreditAmount($amount, $accountToCredit)
+    {
+        $accountMoney = $accountToCredit->getMoney();
+        $money = $accountMoney + $amount;
+        $accountToCredit->setMoney($money);
+
+        $this->persist($accountToCredit);
+
+        return $accountToCredit;
+    }
+
+    public function accountDebitAmount($amount, $transfertRequest)
+    {
+        $accountToDebit = $this->getAccountByNumber($transfertRequest->accountToDebit);
+        $accountMoney = $accountToDebit->getMoney();
+        $money = $accountMoney - $amount;
+
+        $accountToDebit->setMoney($money);
+
+        $this->persist($accountToDebit);
+
+        return $accountToDebit;
+    }
+
     public function createAccount($createAccountRequest, $user)
     {
         $account = new Account;
@@ -35,8 +59,19 @@ class AccountManager
 
     public function getAccountByNumber($number)
     {
-        $account = $this->repository->findByNumber($number);
+        $account = $this->repository->findOneByNumber($number);
         return $account;
+    }
+
+    public function getAccountsUser($user)
+    {
+        $accounts = $this->repository->findByUser($user);
+
+        foreach ($accounts as $account) {
+            $accountsNumber[] = [$account->getNumber() => $account->getNumber()];
+        }
+
+        return $accountsNumber;
     }
 
     public function updateAccount($account, $money)
