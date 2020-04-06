@@ -1,0 +1,46 @@
+PHPUnit 7.5.20 by Sebastian Bergmann and contributors.
+
+Testing Project Test Suite
+.                                                                   1 / 1 (100%)<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>
+			Hello TransfertController!
+		</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="/public.css"/>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+			</head>
+
+	<body class="text-center vsc-initialized" cz-shortcut-listen="true">
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+			<a class="navbar-brand" href="/dashboard">Dashboard</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</nav>
+				<div class="container"> 	<form name="transfert_form" method="post">
+
+	<div><label for="transfert_form_accountToDebit" class="required">Account to debit</label><select id="transfert_form_accountToDebit" name="transfert_form[accountToDebit]"><optgroup label="0">
+                <option value="23456764">23456764</option></optgroup><optgroup label="1">
+                <option value="2345678" selected="selected">2345678</option></optgroup></select></div>
+	<div><label for="transfert_form_accountToCredit" class="required">Account to credit</label><select id="transfert_form_accountToCredit" name="transfert_form[accountToCredit]"><optgroup label="0">
+                <option value="23456764">23456764</option></optgroup><optgroup label="1">
+                <option value="2345678" selected="selected">2345678</option></optgroup></select></div>
+			<div class="text-danger">You can't transfert money between the same account</div>
+		<div><label for="transfert_form_amount" class="required">Amount</label><input type="text" id="transfert_form_amount" name="transfert_form[amount]" required="required" placeholder="€" value="234" /></div>
+
+	<button type="submit" value="Ajouter" class="btn btn-success pull-right">Ajouter</button>
+	<input type="hidden" id="transfert_form__token" name="transfert_form[_token]" value="8nJ6lBEJds0gZt7pYWgrzsviZJCIYwOzKzj5ZJV5RhA" /></form>
+			</div>
+					</body>
+
+	</html>
+
+
+Time: 1.27 seconds, Memory: 28.00 MB
+
+[30;42mOK (1 test, 1 assertion)[0m

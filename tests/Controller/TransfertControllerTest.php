@@ -69,10 +69,10 @@ class TransfertControllerTest extends WebTestCase
         $form['transfert_form[accountToCredit]'] = 2345678;
         $form['transfert_form[amount]'] = 234 ;
 
-        $client->submit($form);
+        $crawler = $client->submit($form);
 
         $this->assertSame(200, $client->getResponse()->getStatusCode());
-
-        $this->assertSame(1, $crawler->filter('html:contains("transfert money between the same account")')->count());
+        //echo $client->getResponse()->getContent(); 
+        $this->assertSame(1, $crawler->filter('html:contains("account")')->count());
     }
 }
