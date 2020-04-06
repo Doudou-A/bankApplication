@@ -17,9 +17,9 @@ class TransfertControllerTest extends WebTestCase
 
         $form = $crawler->selectButton('Ajouter')->form();
 
-        $form['transaction_form[name]'] = 'Bike';
-        $form['transaction_form[price]'] = 234 ;
-        $form['transaction_form[status]'] = 0 ;
+        $form['transfert_form[accountToDebit]'] = 2345678;
+        $form['transfert_form[accountToCredit]'] = 23456764;
+        $form['transfert_form[amount]'] = 234 ;
 
         $client->submit($form);
 
