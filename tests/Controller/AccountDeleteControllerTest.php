@@ -13,7 +13,7 @@ class AccountDeleteControllerTest extends WebTestCase
             'PHP_AUTH_PW'   => 'password',
         ]);
 
-        $crawler = $client->request('GET', '/account/delete/1');
+        $crawler = $client->request('GET', '/account/delete/2');
 
         $crawler = $client->followRedirect();
 

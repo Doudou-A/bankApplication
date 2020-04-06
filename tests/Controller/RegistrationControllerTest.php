@@ -16,7 +16,7 @@ class RegistrationControllerTest extends WebTestCase
 
         $form = $crawler->selectButton('Register')->form();
 
-        $form['registration_form[username]'] = 'administration';
+        $form['registration_form[username]'] = 'admin';
         $form['registration_form[plainPassword]'] = 'password';
         $form['registration_form[agreeTerms]'] = 1 ;
 

@@ -13,7 +13,7 @@ class AccountDisplayControllerTest extends WebTestCase
             'PHP_AUTH_PW'   => 'password',
         ]);
 
-        $crawler = $client->request('GET', '/account/1');
+        $crawler = $client->request('GET', '/account/2');
 
         $this->assertSame(200, $client->getResponse()->getStatusCode());
 

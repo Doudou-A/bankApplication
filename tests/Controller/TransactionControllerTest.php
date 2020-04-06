@@ -13,7 +13,7 @@ class TransactionControllerTest extends WebTestCase
             'PHP_AUTH_PW'   => 'password',
         ]);
 
-        $crawler = $client->request('GET', '/transaction/1');
+        $crawler = $client->request('GET', '/transaction/2');
 
         $form = $crawler->selectButton('Ajouter')->form();
 
@@ -37,7 +37,7 @@ class TransactionControllerTest extends WebTestCase
             'PHP_AUTH_PW'   => 'password',
         ]);
 
-        $crawler = $client->request('GET', '/transaction/1');
+        $crawler = $client->request('GET', '/transaction/2');
 
         $form = $crawler->selectButton('Ajouter')->form();
 
