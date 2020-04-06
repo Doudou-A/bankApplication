@@ -28,11 +28,13 @@ class Transfert
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Account", inversedBy="transfertsDebit")
+     * @ORM\JoinColumn(onDelete="SET NULL") 
      */
     private $accountToDebit;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Account", inversedBy="transfertsCredit")
+     * @ORM\JoinColumn(onDelete="SET NULL") 
      */
     private $accountToCredit;
 

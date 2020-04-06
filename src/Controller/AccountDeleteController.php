@@ -2,18 +2,19 @@
 
 namespace App\Controller;
 
+use App\Service\AccountManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AccountDeleteController extends AbstractController
 {
     /**
-     * @Route("/account/delete", name="account_delete")
+     * @Route("/account/delete/{id}", name="account_delete")
      */
-    public function index()
+    public function index($id, AccountManager $accountManager)
     {
-        return $this->render('account_delete/index.html.twig', [
-            'controller_name' => 'AccountDeleteController',
-        ]);
+        $accountManager->deleteAccount($id);
+
+        return $this->redirectToRoute('dashboard');
     }
 }

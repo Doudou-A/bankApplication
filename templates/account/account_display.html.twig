@@ -12,7 +12,7 @@
 				Add a Transaction</a>
 			<a href="{{ path('transfert') }}" class=" border-right col-4 text-white">
 				Add a Transfert</a>
-			<a href="{{ path('transaction', {'id' : account.id}) }}" class="col-4 text-white">Delete this Account</a>
+			<a href="{{ path('account_delete', {'id' : account.id}) }}" class="col-4 text-white">Delete this Account</a>
 		</div>
 		<div class="border">
 			{% if account.money < 0 %}
@@ -26,13 +26,52 @@
 		<div class="border-right border-left border-bottom overflow-auto">
 			{% for aExchange in aExchanges %}
 				<div class="p-3 d-flex justify-content-between">
-					{% if aExchange.status == 0 %}
-						<div class="m-3">{{aExchange.name}}</div>
-						<div class="text-success m-3">+{{aExchange.price}}
+					{% if aExchange.status is defined %}
+						<div class="m-3 d-flex justify-content-column">
+							<div class="w-100">{{aExchange.name}}</div>
+							<div>{{aExchange.dateCreated | date('d/m/Y')}}
+								à
+								{{aExchange.dateCreated | date('H:i')}}</div>
+						</div>
+						{% if aExchange.status == 0 %}
+							<div class="text-success m-3">+{{aExchange.price}}
+								€</div>
+						{% else %}
+							<div class="text-danger m-3">-{{aExchange.price}}
+								€</div>
+						{% endif %}
+					{% endif %}
+					{% if aExchange.accountToDebit is defined and aExchange.accountToCredit == account %}
+						<div class="d-flex justify-content-column">
+							{% if aExchange.accountToDebit.number is not defined %}
+								<div class="w-100">
+									From account delete recently</div>
+							{% else %}
+								<div class="w-100">
+									From
+									{{aExchange.accountToDebit.number}}</div>
+							{% endif %}
+							<div>{{aExchange.dateCreated | date('d/m/Y')}}
+								à
+								{{aExchange.dateCreated | date('H:i')}}</div>
+						</div>
+						<div class="text-success m-3">+{{aExchange.amount}}
 							€</div>
-					{% else %}
-						<div class="m-3">{{aExchange.name}}</div>
-						<div class="text-danger m-3">-{{aExchange.price}}
+					{% elseif aExchange.accountToDebit is defined and aExchange.accountToDebit == account %}
+						<div class="d-flex justify-content-column">
+							{% if aExchange.accountToCredit.number is not defined %}
+								<div class="w-100">
+									To account delete recently</div>
+							{% else %}
+								<div class="w-100">
+									To
+									{{aExchange.accountToCredit.number}}</div>
+							{% endif %}
+							<div>{{aExchange.dateCreated | date('d/m/Y')}}
+								à
+								{{aExchange.dateCreated | date('H:i')}}</div>
+						</div>
+						<div class="text-danger m-3">-{{aExchange.amount}}
 							€</div>
 					{% endif %}
 				</div>

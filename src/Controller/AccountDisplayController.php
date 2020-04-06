@@ -19,9 +19,11 @@ class AccountDisplayController extends AbstractController
         $account = $accountManager->getAccount($id);
 
         $transactions = $repoTransaction->findBy(array('account' => $account->getId()), array('dateCreated' => 'desc'),10,0);
-        $transferts = $repoTransfert->findBy(array('account' => $account->getId()), array('dateCreated' => 'desc'),10,0);
+        $transfertsDebit = $repoTransfert->findBy(array('accountToDebit' => $account->getId()), array('dateCreated' => 'desc'),5,0);
+        $transfertsCredit = $repoTransfert->findBy(array('accountToCredit' => $account->getId()), array('dateCreated' => 'desc'),5,0);
 
-        $aExchanges = array_merge($transactions, $transferts);
+        $aExchanges = array_merge($transactions, $transfertsDebit);
+        $aExchanges = array_merge($aExchanges, $transfertsCredit);
 
         return $this->render('account/account_display.html.twig', [
             'account' => $account,

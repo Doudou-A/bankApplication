@@ -36,6 +36,7 @@ class Account
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Transaction", mappedBy="account")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $transactions;
 

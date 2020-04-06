@@ -50,6 +50,13 @@ class AccountManager
 
         $this->persist($account);
     }
+     
+    public function deleteAccount($id)
+    {
+        $account = $this->repository->find($id);
+
+        $this->remove($account);
+    }
 
     public function getAccount($id)
     {
@@ -82,6 +89,12 @@ class AccountManager
     public function persist($account)
     {
         $this->manager->persist($account);
+        $this->manager->flush();
+    }
+
+    public function remove($account)
+    {
+        $this->manager->remove($account);
         $this->manager->flush();
     }
 }

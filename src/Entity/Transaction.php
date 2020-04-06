@@ -33,6 +33,7 @@ class Transaction
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Account", inversedBy="transactions")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $account;
 
