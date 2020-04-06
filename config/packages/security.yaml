@@ -30,7 +30,7 @@ security:
                 default_target_path:  dashboard
             logout: 
                 path:   app_logout    
-                target: dashboard
+                target: app_login
                 # where to redirect after logout
                 # target: app_any_route
 
