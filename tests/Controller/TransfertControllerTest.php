@@ -73,6 +73,20 @@ class TransfertControllerTest extends WebTestCase
 
         $this->assertSame(200, $client->getResponse()->getStatusCode());
         //echo $client->getResponse()->getContent(); 
-        $this->assertSame(1, $crawler->filter('html:contains("account")')->count());
+        $this->assertSame(1, $crawler->filter('html:contains("You can\'t transfert money between the same account")')->count());
+
+        $form = $crawler->selectButton('Ajouter')->form();
+
+        $form['transfert_form[accountToDebit]'] = 23456764;
+        $form['transfert_form[accountToCredit]'] = 2345678;
+        $form['transfert_form[amount]'] = 234 ;
+
+        $crawler = $client->submit($form);
+
+        $crawler = $client->followRedirect();
+
+        $this->assertSame(200, $client->getResponse()->getStatusCode());
+
+        $this->assertSame(1, $crawler->filter('html:contains("Dashboard")')->count());
     }
 }

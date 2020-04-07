@@ -20,7 +20,6 @@ class TransfertController extends AbstractController
      */
     public function index(Request $request, TransfertManager $transfertManager, AccountManager $accountManager)
     {
-        /* $userId = $this->getUser()->getId(); */
         $user = $this->getUser();
 
         $accountsNumber = $accountManager->getAccountsUser($user);
