@@ -2,17 +2,19 @@
 
 namespace App\Controller;
 
+use App\Entity\Transaction;
 use App\Repository\AccountRepository;
 use App\Repository\TransactionRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class DashboardController extends AbstractController
 {
     /**
      * @Route("/dashboard", name="dashboard")
      */
-    public function index(AccountRepository $repoAccount, TransactionRepository $repoTransaction )
+    public function index(AccountRepository $repoAccount, TransactionRepository $repoTransaction):Response
     {
         $user = $this->getUser();
         $accounts = $repoAccount->findByUser($user);

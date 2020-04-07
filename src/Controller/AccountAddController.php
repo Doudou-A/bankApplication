@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
-use App\DOI\CreateAccountRequest;
 use App\Form\AccountFormType;
 use App\Service\AccountManager;
+use App\DOI\CreateAccountRequest;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -14,7 +15,7 @@ class AccountAddController extends AbstractController
     /**
      * @Route("/account/add", name="account_add")
      */
-    public function index(Request $request, AccountManager $accountManager)
+    public function index(Request $request, AccountManager $accountManager):Response
     {
         $user = $this->getUser();
         $createAccountRequest = new CreateAccountRequest;
