@@ -34,12 +34,14 @@ class Account
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="accounts")
      * @ORM\JoinColumn(nullable=false)
+     * @var object
      */
     private $user;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Transaction", mappedBy="account")
      * @ORM\JoinColumn(onDelete="CASCADE")
+     * 
      */
     private $transactions;
 
