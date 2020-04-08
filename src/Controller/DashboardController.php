@@ -16,17 +16,14 @@ class DashboardController extends AbstractController
      */
     public function index(AccountRepository $repoAccount, TransactionRepository $repoTransaction):Response
     {
+        phpinfo();
         $user = $this->getUser();
-        $accounts = $repoAccount->findByUser($user);
+        $accounts = $repoAccount->findBy(array('user' => $user->getId()));
+        //$accounts = $repoAccount->findByUser($user);
         $transactions = new Transaction();
 
         foreach($accounts as $account){
-        //$transactions = $repoTransaction->findBy(array('account' => $account->getId()), array('dateCreated' => 'desc'),5,0);
-        $qb->select('u')
-        ->from('Transaction', 'u')
-        ->where('u.account.id = ?1')
-        ->orderBy('u.name', 'ASC');
-     
+        $transactions = $repoTransaction->findBy(array('account' => $account->getId()), array('dateCreated' => 'desc'),5,0);
         }
 
         return $this->render('dashboard/index.html.twig', [
