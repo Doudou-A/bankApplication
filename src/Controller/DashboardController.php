@@ -16,7 +16,6 @@ class DashboardController extends AbstractController
      */
     public function index(AccountRepository $repoAccount, TransactionRepository $repoTransaction):Response
     {
-        phpinfo();
         $user = $this->getUser();
         $accounts = $repoAccount->findBy(array('user' => $user->getId()));
         //$accounts = $repoAccount->findByUser($user);
