@@ -9,6 +9,7 @@ use App\Entity\Account;
 use App\Entity\Transaction;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
@@ -25,7 +26,7 @@ class AppFixtures extends Fixture
         $this->encoder = $encoder;
     }
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager):void
     {
         $faker = Factory::create();
         $users = [];
@@ -58,7 +59,7 @@ class AppFixtures extends Fixture
 
             $account = $faker->randomElement($accounts);
             $transaction ->setName($faker->domainWord)
-                    ->setPrice(random_int(0,999.99))
+                    ->setPrice(random_int(0,999))
                     ->setStatus($faker->randomElement($status))
                     ->setAccount($faker->randomElement($accounts))
                     ->setDateCreated($faker->dateTime);

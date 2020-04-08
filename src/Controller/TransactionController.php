@@ -7,10 +7,11 @@ use App\Entity\Transaction;
 use App\DOI\TransactionRequest;
 use App\Service\AccountManager;
 use App\Form\TransactionFormType;
-use App\Repository\AccountRepository;
 use App\Service\TransactionManager;
+use App\Repository\AccountRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -19,7 +20,7 @@ class TransactionController extends AbstractController
     /**
      * @Route("/transaction/{id}", name="transaction")
      */
-    public function index($id, Request $request, AccountManager $accountManager, TransactionManager $transactionManager)
+    public function index(int $id, Request $request, AccountManager $accountManager, TransactionManager $transactionManager): Response
     {
         $account = $accountManager->getAccount($id);
 
@@ -32,7 +33,7 @@ class TransactionController extends AbstractController
         {
             $transaction = $transactionManager->newTransaction($transactionRequest, $id);
 
-            if($transactionRequest->status === 1)
+            if($transactionRequest->status == 1)
             {
                 $money = $transactionManager->buy($transaction, $transactionRequest);
             } else {

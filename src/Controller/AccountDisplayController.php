@@ -2,18 +2,19 @@
 
 namespace App\Controller;
 
-use App\Repository\TransactionRepository;
-use App\Repository\TransfertRepository;
 use App\Service\AccountManager;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\TransfertRepository;
+use App\Repository\TransactionRepository;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AccountDisplayController extends AbstractController
 {
     /**
      * @Route("/account/{id}", name="account_display")
      */
-    public function index($id, AccountManager $accountManager, TransactionRepository $repoTransaction, TransfertRepository $repoTransfert)
+    public function index(int $id, AccountManager $accountManager, TransactionRepository $repoTransaction, TransfertRepository $repoTransfert):Response
     {
 
         $account = $accountManager->getAccount($id);

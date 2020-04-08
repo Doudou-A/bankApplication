@@ -15,16 +15,19 @@ class Account
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @var integer
      */
     private $id;
 
     /**
      * @ORM\Column(type="integer")
+     * @var integer
      */
     private $number;
 
     /**
      * @ORM\Column(type="float")
+     * @var float
      */
     private $money;
 

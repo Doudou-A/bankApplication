@@ -17,12 +17,12 @@ class DashboardController extends AbstractController
     public function index(AccountRepository $repoAccount, TransactionRepository $repoTransaction):Response
     {
         $user = $this->getUser();
-        $accounts = $repoAccount->findBy(array('user' => $user->getId()));
+        $accounts = $repoAccount->findBy(array('user' => $user));
         //$accounts = $repoAccount->findByUser($user);
         $transactions = new Transaction();
 
         foreach($accounts as $account){
-        $transactions = $repoTransaction->findBy(array('account' => $account->getId()), array('dateCreated' => 'desc'),5,0);
+        $transactions = $repoTransaction->findBy(array('account' => $account), array('dateCreated' => 'desc'),5,0);
         }
 
         return $this->render('dashboard/index.html.twig', [

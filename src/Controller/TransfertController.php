@@ -2,14 +2,15 @@
 
 namespace App\Controller;
 
-use App\DOI\TransfertRequest;
 use App\Entity\Transfert;
+use App\DOI\TransfertRequest;
 use App\Form\TransfertFormType;
-use App\Repository\AccountRepository;
 use App\Service\AccountManager;
 use App\Service\TransfertManager;
+use App\Repository\AccountRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -18,7 +19,7 @@ class TransfertController extends AbstractController
     /**
      * @Route("/transfert", name="transfert")
      */
-    public function index(Request $request, TransfertManager $transfertManager, AccountManager $accountManager)
+    public function index(Request $request, TransfertManager $transfertManager, AccountManager $accountManager): Response
     {
         $user = $this->getUser();
 
