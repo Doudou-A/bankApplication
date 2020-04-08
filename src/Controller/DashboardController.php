@@ -18,9 +18,15 @@ class DashboardController extends AbstractController
     {
         $user = $this->getUser();
         $accounts = $repoAccount->findByUser($user);
+        $transactions = new Transaction();
 
         foreach($accounts as $account){
-        $transactions = $repoTransaction->findBy(array('account' => $account->getId()), array('dateCreated' => 'desc'),5,0);
+        //$transactions = $repoTransaction->findBy(array('account' => $account->getId()), array('dateCreated' => 'desc'),5,0);
+        $qb->select('u')
+        ->from('Transaction', 'u')
+        ->where('u.account.id = ?1')
+        ->orderBy('u.name', 'ASC');
+     
         }
 
         return $this->render('dashboard/index.html.twig', [
