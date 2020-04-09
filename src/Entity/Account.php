@@ -46,6 +46,7 @@ class Account
     private $user;
 
     /**
+     * @var Collection<Transaction>
      * 
      * @ORM\OneToMany(targetEntity="App\Entity\Transaction", mappedBy="account")
      * @ORM\JoinColumn(onDelete="CASCADE")
@@ -113,7 +114,7 @@ class Account
     }
 
     /**
-     * @return Collection|Transaction[]
+     * @return ArrayCollection|Transaction[]
      */
     public function getTransactions(): Collection
     {
