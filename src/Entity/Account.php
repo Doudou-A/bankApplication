@@ -2,9 +2,12 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\User;
+use App\Entity\Transfert;
+use App\Entity\Transaction;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AccountRepository")
@@ -12,45 +15,51 @@ use Doctrine\ORM\Mapping as ORM;
 class Account
 {
     /**
+     * @var integer
+     * 
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @var integer
      */
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
      * @var integer
+     * 
+     * @ORM\Column(type="integer")
      */
     private $number;
 
     /**
-     * @ORM\Column(type="float")
      * @var float
+     * 
+     * @ORM\Column(type="float")
      */
     private $money;
 
     /**
+     * @var User
+     * 
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="accounts")
      * @ORM\JoinColumn(nullable=false)
-     * @var object
      */
     private $user;
 
     /**
+     * 
      * @ORM\OneToMany(targetEntity="App\Entity\Transaction", mappedBy="account")
      * @ORM\JoinColumn(onDelete="CASCADE")
-     * 
      */
     private $transactions;
 
     /**
+     * 
      * @ORM\OneToMany(targetEntity="App\Entity\Transfert", mappedBy="accountToDebit")
      */
     private $transfertsDebit;
 
     /**
+     * 
      * @ORM\OneToMany(targetEntity="App\Entity\Transfert", mappedBy="accountToCredit")
      */
     private $transfertsCredit;

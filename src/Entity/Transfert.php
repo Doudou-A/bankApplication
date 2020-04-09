@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Transfert
 {
     /**
+     * @var int
+     * 
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -17,22 +20,30 @@ class Transfert
     private $id;
 
     /**
+     * @var float
+     * 
      * @ORM\Column(type="float")
      */
     private $amount;
 
     /**
+     * @var DateTimeInterface|null
+     * 
      * @ORM\Column(type="datetime")
      */
     private $dateCreated;
 
     /**
+     * @var Account|null
+     * 
      * @ORM\ManyToOne(targetEntity="App\Entity\Account", inversedBy="transfertsDebit")
      * @ORM\JoinColumn(onDelete="SET NULL") 
      */
     private $accountToDebit;
 
     /**
+     * @var Account|null
+     * 
      * @ORM\ManyToOne(targetEntity="App\Entity\Account", inversedBy="transfertsCredit")
      * @ORM\JoinColumn(onDelete="SET NULL") 
      */
