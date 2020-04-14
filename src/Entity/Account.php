@@ -46,7 +46,6 @@ class Account
     private $user;
 
     /**
-     * @var Collection<Transaction>
      * 
      * @ORM\OneToMany(targetEntity="App\Entity\Transaction", mappedBy="account")
      * @ORM\JoinColumn(onDelete="CASCADE")
