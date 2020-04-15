@@ -36,7 +36,7 @@ class AppFixtures extends Fixture
         for($i = 0; $i < 3; $i++){
             $user = new User();
             $user ->setUsername($faker->firstName)
-                  ->setPassword($this->encoder->encodePassword($user, 'password'));
+                ->setPassword($this->encoder->encodePassword($user,'password'));
             
                   $manager->persist($user);
                   $users[] = $user;
