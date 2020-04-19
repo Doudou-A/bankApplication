@@ -113,7 +113,7 @@ class Account
     }
 
     /**
-     * @return ArrayCollection|Transaction[]
+     * @return Collection<Transaction>
      */
     public function getTransactions(): Collection
     {
@@ -144,7 +144,7 @@ class Account
     }
 
     /**
-     * @return Collection|Transfert[]
+     * @return Collection<Transfert>
      */
     public function getTransfertsDebit(): Collection
     {
@@ -175,7 +175,7 @@ class Account
     }
 
     /**
-     * @return Collection|Transfert[]
+     * @return Collection<Transfert>
      */
     public function getTransfertsCredit(): Collection
     {
