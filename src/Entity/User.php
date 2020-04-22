@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Entity\Account;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Security\Core\Role\Role;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints\Json;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -46,7 +47,7 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @var Account
+     * @var Collection<int, Account>
      *  
      * @ORM\OneToMany(targetEntity="App\Entity\Account", mappedBy="user")
      */
@@ -81,6 +82,8 @@ class User implements UserInterface
 
     /**
      * @see UserInterface
+     * 
+     * @return array<string|Role>
      */
     public function getRoles(): array
     {
@@ -91,6 +94,11 @@ class User implements UserInterface
         return array_unique($roles);
     }
 
+    /**
+     * @param array<Role> $roles
+     * 
+     * @return self
+     */
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -115,6 +123,8 @@ class User implements UserInterface
 
     /**
      * @see UserInterface
+     * 
+     * @return mixed
      */
     public function getSalt()
     {
@@ -123,6 +133,8 @@ class User implements UserInterface
 
     /**
      * @see UserInterface
+     * 
+     * @return mixed
      */
     public function eraseCredentials()
     {
@@ -131,7 +143,7 @@ class User implements UserInterface
     }
 
     /**
-     * @return ArrayCollection|Account[]
+     * @return Collection<int, Account>
      */
     public function getAccounts(): Collection
     {

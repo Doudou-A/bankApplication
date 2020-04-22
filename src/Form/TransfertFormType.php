@@ -9,22 +9,19 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class TransfertFormType extends \Symfony\Component\Form\AbstractType
 {
+
+    /**
+     * Undocumented function
+     *
+     * @param FormBuilderInterface<array> $builder
+     * @param array $options
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $this->traitChoices = $options['accountsNumber'];
 
         $builder
-            /*->add('transmitter', EntityType::class, [
-            'class' => Account::class,
-            'query_builder' => function (EntityRepository $repo) {
-                return $repo->createQueryBuilder('account')
-                ->where('account.user.id == '.$options['userId'].'');
-            },
-            'mapped' => false,
-            'multiple' => true,
-            'expanded' => true,
-            'choice_label' => 'name'
-            ]) */
             ->add('accountToDebit', ChoiceType::class, [
                 'choices' => $this->traitChoices
             ])

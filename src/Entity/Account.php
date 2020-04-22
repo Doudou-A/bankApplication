@@ -46,6 +46,7 @@ class Account
     private $user;
 
     /**
+     * @var Collection<int, Transaction>
      * 
      * @ORM\OneToMany(targetEntity="App\Entity\Transaction", mappedBy="account")
      * @ORM\JoinColumn(onDelete="CASCADE")
@@ -53,12 +54,14 @@ class Account
     private $transactions;
 
     /**
+     * @var Collection<int, Transfert>
      * 
      * @ORM\OneToMany(targetEntity="App\Entity\Transfert", mappedBy="accountToDebit")
      */
     private $transfertsDebit;
 
     /**
+     * @var Collection<int, Transfert>
      * 
      * @ORM\OneToMany(targetEntity="App\Entity\Transfert", mappedBy="accountToCredit")
      */
@@ -113,7 +116,7 @@ class Account
     }
 
     /**
-     * @return Collection<Transaction>
+     * @return Collection<int, Transaction>
      */
     public function getTransactions(): Collection
     {
@@ -144,7 +147,7 @@ class Account
     }
 
     /**
-     * @return Collection<Transfert>
+     * @return Collection<int, Transfert>
      */
     public function getTransfertsDebit(): Collection
     {
@@ -175,7 +178,7 @@ class Account
     }
 
     /**
-     * @return Collection<Transfert>
+     * @return Collection<int, Transfert>
      */
     public function getTransfertsCredit(): Collection
     {
