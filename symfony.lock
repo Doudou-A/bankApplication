@@ -165,6 +165,9 @@
     "mikemccabe/json-patch-php": {
         "version": "0.1.0"
     },
+    "nesbot/carbon": {
+        "version": "2.34.2"
+    },
     "nette/utils": {
         "version": "v3.1.1"
     },
