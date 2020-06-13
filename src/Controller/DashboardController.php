@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
+
+use Carbon\CarbonInterval;
 use App\Entity\Transaction;
-use Carbon\Carbon;
 use App\Repository\AccountRepository;
 use App\Repository\TransactionRepository;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,8 +27,7 @@ class DashboardController extends AbstractController
             $transactions = $repoTransaction->findBy(array('account' => $account), array('dateCreated' => 'desc'), 5, 0);
         }
 
-        $date = Carbon::parseFromLocale('demain', 'fr');
-        $dateTime = "Now: $date";
+        $dateTime = CarbonInterval::week(3)->totalHours;
 
         return $this->render('dashboard/index.html.twig', [
             'accounts' => $accounts,
