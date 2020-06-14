@@ -27,7 +27,7 @@ class DashboardController extends AbstractController
             $transactions = $repoTransaction->findBy(array('account' => $account), array('dateCreated' => 'desc'), 5, 0);
         }
 
-        $dateTime = CarbonInterval::week(3)->totalHours;
+        $dateTime = 'SELEM le sang !!!';
 
         return $this->render('dashboard/index.html.twig', [
             'accounts' => $accounts,
