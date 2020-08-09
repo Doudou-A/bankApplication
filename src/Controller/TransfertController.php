@@ -24,7 +24,7 @@ class TransfertController extends AbstractController
         $user = $this->getUser();
 
         $accountsNumber = $accountManager->getAccountsUser($user);
-        
+
         $transfertRequest = new TransfertRequest;
 
         $form = $this->createForm(TransfertFormType::class, $transfertRequest, [
